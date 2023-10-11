@@ -1,0 +1,15 @@
+rtRepo: helm-release-local
+cache: /tmp/sync_chart_cache
+charts:
+  - repo: https://argoproj.github.io/argo-helm
+    name: argo-cd
+  - repo: https://argoproj.github.io/argo-helm
+    name: argo-rollouts
+  - repo: https://argoproj.github.io/argo-helm
+    name: argocd-apps
+  - repo: https://charts.jenkins.io
+    name: jenkins
+  - repo: https://ygqygq2.github.io/charts
+    name: nacos
+  - repo: https://kubernetes.github.io/ingress-nginx
+    name: ingress-nginx
