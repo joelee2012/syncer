@@ -7,9 +7,17 @@ charts:
     name: argo-rollouts
   - repo: https://argoproj.github.io/argo-helm
     name: argocd-apps
+  - repo: https://argoproj.github.io/argo-helm
+    name: argocd-workflows
+
   - repo: https://charts.jenkins.io
     name: jenkins
   - repo: https://ygqygq2.github.io/charts
     name: nacos
   - repo: https://kubernetes.github.io/ingress-nginx
     name: ingress-nginx
+    version: 4.1.1
+  - repo: https://joelee2012.github.io/helm-charts
+    name: xxl-job-admin
+  - repo: https://repos.emqx.io/charts
+    name: emqx

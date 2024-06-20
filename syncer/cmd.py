@@ -37,25 +37,6 @@ def main():
         asyncio.run(execute(args, progress), debug=args.debug)
 
 
-# class IndexManager:
-
-#     indexes = {}
-
-#     @classmethod
-#     async def get_index(cls, url):
-#         indexes = cls.indexes
-#         if url not in indexes:
-#             async with AsyncClient(timeout=timeout) as client:
-#                 indexes[url] = yaml.safe_load(await client.get(f'{url}/index.yaml'))
-#         return indexes[url]
-
-
-# async def get_index(repo, timeout=10):
-#     if repo not in indexes:
-#         async with AsyncClient(follow_redirects=True, timeout=timeout) as client:
-#             resp = await client.get(f'{repo}/index.yaml')
-#             indexes[repo] = yaml.safe_load(resp.text)
-#     return indexes[repo]
 indexes = {}
 
 
@@ -69,11 +50,15 @@ async def get_index(repo, timeout=10):
 
 async def get_chart_url(repo, name, version='', timeout=10):
     index = await get_index(repo, timeout)
+    url = index['entries'][name][0]['urls'][0]
     if version and version != 'latest':
         for c in index['entries'][name]:
             if c['version'] == version:
-                return c['urls'][0]
-    return index['entries'][name][0]['urls'][0]
+                url =c['urls'][0]
+                break
+    if not url.startswith('http'):
+        url = f'{repo}/{url}'
+    return url
 
 
 async def execute(args, progress):
@@ -139,7 +124,7 @@ async def worker(queue, progress, retries, timeout):
             else:
                 progress.reset(task, total=cache_path.stat().st_size)
                 progress.update(task, completed=cache_path.stat().st_size)
-            cmd = f'jf rt u {cache_path} {rt_repo}/{info["name"]}/{version}/'
+            cmd = f'jf rt u {cache_path} {rt_repo}/{info["name"]}/{version}/{filename}'
             await run_shell(cmd, progress)
         except Exception as e:
             progress.reset(task, start=False,

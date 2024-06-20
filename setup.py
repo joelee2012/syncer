@@ -28,8 +28,7 @@ setup(
     packages=['syncer'],
     install_requires=requires,
     license=about['__license__'],
-    python_requires='>=3.8, !=3.0.*, !=3.1.*, !=3.2.*,'
-                    ' !=3.3.*, !=3.4.*, !=3.5.*',
+    python_requires='>=3.8',
     entry_points={
         'console_scripts': [
             'syncer = syncer.cmd:main'
