@@ -8,8 +8,7 @@ charts:
   - repo: https://argoproj.github.io/argo-helm
     name: argocd-apps
   - repo: https://argoproj.github.io/argo-helm
-    name: argocd-workflows
-
+    name: argo-workflows
   - repo: https://charts.jenkins.io
     name: jenkins
   - repo: https://ygqygq2.github.io/charts
@@ -21,3 +20,10 @@ charts:
     name: xxl-job-admin
   - repo: https://repos.emqx.io/charts
     name: emqx
+
+    #argoproj.github.io/argo-helm:
+    #  skipVerify: true
+    #  charts:
+    #    argo-cd:
+    #      - "5.46.7"
+    #    argo-rollouts:

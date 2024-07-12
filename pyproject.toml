@@ -1,0 +1,38 @@
+[project]
+name = "syncer"
+version = "0.1.0"
+description = "Add your description here"
+authors = [{ name = "Joe Lee", email = "lj_2005@163.com" }]
+dependencies = ["httpx", "pyyaml", "rich"]
+readme = "README.md"
+requires-python = ">= 3.8"
+license = { text = "Apache-2.0" }
+classifiers = [
+    'Intended Audience :: Developers',
+    'Intended Audience :: System Administrators',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Topic :: Software Development',
+]
+[project.scripts]
+"syncer" = "syncer:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/syncer"]
